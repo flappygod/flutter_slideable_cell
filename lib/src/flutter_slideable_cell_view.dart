@@ -245,7 +245,7 @@ class SlideableCellController {
 }
 
 /// 可滑动的 Cell 组件。
-/// A slideable cell widget with leading/trailing actions.
+/// A slidable cell widget with leading/trailing actions.
 class SlideableCellView extends StatefulWidget {
   /// 展开模式。
   /// Expansion mode for action layout.

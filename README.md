@@ -2,6 +2,8 @@
 
 A Flutter package for list rows with swipe-to-reveal leading and trailing actions, similar to iOS mail cells. It supports gesture-driven open/close, programmatic control via `ValueKey`, full-width expansion, and customizable action layouts.
 
+> **Naming:** the pub package is `flutter_slidable_cell` (import path), while public types use **Slideable** (可滑动), e.g. `SlideableCellView`.
+
 ## Features
 
 - **Leading & trailing actions** — swipe horizontally to reveal action buttons on either side.
@@ -24,7 +26,7 @@ dependencies:
 Import the library:
 
 ```dart
-import 'package:flutter_slidable_cell/flutter_slideable_cell.dart';
+import 'package:flutter_slidable_cell/flutter_slidable_cell.dart';
 ```
 
 Each `SlideableCellView` must use a **unique** `ValueKey` so the controller can address a single live instance.

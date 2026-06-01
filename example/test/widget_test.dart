@@ -11,9 +11,9 @@ import 'package:example/main.dart';
 
 void main() {
   testWidgets('example page renders correctly', (WidgetTester tester) async {
-    await tester.pumpWidget(const SlidableExampleApp());
+    await tester.pumpWidget(const SlideableExampleApp());
 
-    expect(find.text('Slidable Cell 示例'), findsOneWidget);
+    expect(find.text('Slideable Cell 示例'), findsOneWidget);
     expect(find.text('打开第1项左侧'), findsOneWidget);
     expect(find.text('关闭全部'), findsOneWidget);
   });

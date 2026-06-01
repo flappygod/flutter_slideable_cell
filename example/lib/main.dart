@@ -2,34 +2,34 @@ import 'package:flutter_slidable_cell/flutter_slideable_cell.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const SlidableExampleApp());
+  runApp(const SlideableExampleApp());
 }
 
 /// 示例入口。
 /// Example app entry.
-class SlidableExampleApp extends StatelessWidget {
-  const SlidableExampleApp({super.key});
+class SlideableExampleApp extends StatelessWidget {
+  const SlideableExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Slidable Cell Example',
+      title: 'Slideable Cell Example',
       theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
-      home: const SlidableExamplePage(),
+      home: const SlideableExamplePage(),
     );
   }
 }
 
 /// 展示手势与控制器两种开关方式。
 /// Demonstrates gesture and controller driven open/close.
-class SlidableExamplePage extends StatefulWidget {
-  const SlidableExamplePage({super.key});
+class SlideableExamplePage extends StatefulWidget {
+  const SlideableExamplePage({super.key});
 
   @override
-  State<SlidableExamplePage> createState() => _SlidableExamplePageState();
+  State<SlideableExamplePage> createState() => _SlideableExamplePageState();
 }
 
-class _SlidableExamplePageState extends State<SlidableExamplePage> {
+class _SlideableExamplePageState extends State<SlideableExamplePage> {
   final SlideableCellController _controller = SlideableCellController();
   final List<int> _items = List<int>.generate(8, (index) => index);
 
@@ -51,7 +51,7 @@ class _SlidableExamplePageState extends State<SlidableExamplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Slidable Cell 示例')),
+      appBar: AppBar(title: const Text('Slideable Cell 示例')),
       backgroundColor: Colors.grey,
       body: Column(
         children: [

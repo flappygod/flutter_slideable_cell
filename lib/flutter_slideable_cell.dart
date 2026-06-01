@@ -1,4 +1,4 @@
-library flutter_slidable_cell;
+library flutter_slideable_cell;
 
 export 'src/flutter_slideable_base.dart';
 export 'src/flutter_slideable_cell_view.dart';
