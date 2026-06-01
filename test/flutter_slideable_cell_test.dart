@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_slideable_cell/flutter_slideable_cell.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_slidable_cell/flutter_slideable_cell.dart';
+import 'package:flutter/material.dart';
 
 /// 复用的小型 cell 构造函数（保持 widget 形状一致以便 element diff 稳定）。
 /// Reusable cell builder; keeps widget shape stable for predictable element diff.

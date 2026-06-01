@@ -1,4 +1,4 @@
-name: flutter_slidable_cell
+name: flutter_slideable_cell
 description: >-
   Slideable (swipeable) list cell with leading/trailing actions,
   programmatic control via ValueKey, and optional full-width expansion.

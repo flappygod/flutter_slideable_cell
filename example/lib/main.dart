@@ -1,4 +1,4 @@
-import 'package:flutter_slidable_cell/flutter_slideable_cell.dart';
+import 'package:flutter_slideable_cell/flutter_slideable_cell.dart';
 import 'package:flutter/material.dart';
 
 void main() {
