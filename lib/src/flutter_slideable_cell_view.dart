@@ -1440,13 +1440,6 @@ class _SlideableCellViewState extends State<SlideableCellView>
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.enable) {
-      return Container(
-        color: widget.color,
-        child: widget.child,
-      );
-    }
-
     return LayoutBuilder(
       builder: (context, constraints) {
         /// 用 LayoutBuilder 取父容器宽度，避免 MediaQuery 在嵌套场景下不准。
@@ -1460,9 +1453,10 @@ class _SlideableCellViewState extends State<SlideableCellView>
 
         return GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onHorizontalDragStart: _onHorizontalDragStart,
-          onHorizontalDragUpdate: _onHorizontalDragUpdate,
-          onHorizontalDragEnd: _onHorizontalDragEnd,
+          onHorizontalDragStart: widget.enable ? _onHorizontalDragStart : null,
+          onHorizontalDragUpdate:
+              widget.enable ? _onHorizontalDragUpdate : null,
+          onHorizontalDragEnd: widget.enable ? _onHorizontalDragEnd : null,
           child: Container(
             color: widget.color,
             child: Stack(
