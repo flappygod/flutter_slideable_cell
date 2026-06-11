@@ -245,7 +245,7 @@ class SlideableCellController {
 }
 
 /// 可滑动的 Cell 组件。
-/// A slidable cell widget with leading/trailing actions.
+/// A slideable cell widget with leading/trailing actions.
 class SlideableCellView extends StatefulWidget {
   /// 展开模式。
   /// Expansion mode for action layout.
@@ -358,6 +358,10 @@ class SlideableCellView extends StatefulWidget {
   /// Background color.
   final Color color;
 
+  /// 是否允许侧滑手势。
+  /// Whether horizontal swipe gestures are enabled.
+  final bool enable;
+
   /// 打开自己的时候关闭其他的 item。
   /// Whether to close other opened items when opening current one.
   final bool closeOthersWhenOpen;
@@ -396,7 +400,7 @@ class SlideableCellView extends StatefulWidget {
     this.openFactor = 0.25,
     this.closeFactor = 0.25,
     this.flingVelocity = 700.0,
-    this.curve = const Cubic(0.34, 0.84, 0.12, 1.00),
+    this.curve = const Cubic(0.34, 0.84, 0.12, 1),
     this.duration = const Duration(milliseconds: 500),
     //左边
     this.leadingActions = const [],
@@ -412,6 +416,7 @@ class SlideableCellView extends StatefulWidget {
     this.trailingFullExpandBehavior = SlideableExpandBehavior.expand,
     this.onTrailingFullExpand,
     this.trailingAutoTrigger = false,
+    this.enable = true,
     //打开的时候关闭其他的
     this.closeOthersWhenOpen = true,
     this.color = Colors.white,
@@ -577,6 +582,10 @@ class _SlideableCellViewState extends State<SlideableCellView>
         oldWidget.controller != widget.controller) {
       oldWidget.controller._unregister(oldWidget.cellKey, _controllerEntry);
       widget.controller._register(widget.cellKey, _controllerEntry, _status);
+    }
+
+    if (oldWidget.enable && !widget.enable) {
+      _animateToClosed();
     }
   }
 
@@ -1085,6 +1094,9 @@ class _SlideableCellViewState extends State<SlideableCellView>
     required double target,
     required SlideableCellStatus status,
   }) async {
+    if (!widget.enable) {
+      return;
+    }
     if (widget.closeOthersWhenOpen) {
       await Future.wait([
         _closeOtherOpenedCells(),
@@ -1187,12 +1199,18 @@ class _SlideableCellViewState extends State<SlideableCellView>
   /// 手势开始时终止进行中的动画。
   /// Stop active animation when a new drag starts.
   void _onHorizontalDragStart(DragStartDetails details) {
+    if (!widget.enable) {
+      return;
+    }
     _snapAnimationController.stop();
   }
 
   /// 拖动过程中实时更新偏移，并限制在左右可展开范围内。
   /// Updates offset while dragging and clamps to action total widths.
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
+    if (!widget.enable) {
+      return;
+    }
     final next = _applyCloseResistanceIfNeeded(
       baseOffset: _offset,
       deltaDx: details.delta.dx,
@@ -1269,6 +1287,9 @@ class _SlideableCellViewState extends State<SlideableCellView>
   /// Gesture-end threshold decision:
   /// uses [openFactor] from closed state and [closeFactor] from opened state.
   Future<void> _onHorizontalDragEnd(DragEndDetails details) async {
+    if (!widget.enable) {
+      return;
+    }
     final leadingWidth = _leadingActualTotalWidth;
     final trailingWidth = _trailingActualTotalWidth;
 
@@ -1419,6 +1440,13 @@ class _SlideableCellViewState extends State<SlideableCellView>
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.enable) {
+      return Container(
+        color: widget.color,
+        child: widget.child,
+      );
+    }
+
     return LayoutBuilder(
       builder: (context, constraints) {
         /// 用 LayoutBuilder 取父容器宽度，避免 MediaQuery 在嵌套场景下不准。

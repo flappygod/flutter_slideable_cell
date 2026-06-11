@@ -1,3 +1,3 @@
-## 1.0.0
+## 1.0.1
 
-* Initial release: `SlideableCellView`, `SlideableCellController`, and `SlideableActionItem`.
+* Add an enabled option to control whether sliding is allowed.

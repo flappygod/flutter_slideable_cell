@@ -2,7 +2,7 @@ name: flutter_slideable_cell
 description: >-
   Slideable (swipeable) list cell with leading/trailing actions,
   programmatic control via ValueKey, and optional full-width expansion.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/flappygod/flutter_slideable_cell
 repository: https://github.com/flappygod/flutter_slideable_cell
 issue_tracker: https://github.com/flappygod/flutter_slideable_cell/issues
